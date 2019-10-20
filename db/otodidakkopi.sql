@@ -16,6 +16,23 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`u4412647_otodidak` /*!40100 DEFAULT CHA
 
 USE `u4412647_otodidak`;
 
+/*Table structure for table `cart_sessions` */
+
+DROP TABLE IF EXISTS `cart_sessions`;
+
+CREATE TABLE `cart_sessions` (
+  `id` int(6) NOT NULL AUTO_INCREMENT,
+  `id_user` int(6) DEFAULT NULL,
+  `id_produk` int(10) DEFAULT NULL,
+  `nama_produk` varchar(100) DEFAULT NULL,
+  `quantity` int(10) DEFAULT NULL,
+  `harga` decimal(18,0) DEFAULT NULL,
+  `total` decimal(18,0) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `cart_sessions` */
+
 /*Table structure for table `kategori` */
 
 DROP TABLE IF EXISTS `kategori`;
