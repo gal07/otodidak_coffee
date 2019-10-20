@@ -88,6 +88,7 @@ class Login extends CI_Controller
 
 	public function alurlogout()
 	{
+		$this->session->unset_userdata('id');
 		$this->session->unset_userdata('email');
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('password');

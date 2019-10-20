@@ -29,6 +29,7 @@
                     <div class="row el-element-overlay">
                             <div class="col-md-12">
                                 <h4 class="card-title">Produk Otodidak Coffee</h4>
+                                <input type="hidden" name="url" id="url" value="<?= base_url() ?>">
                                 <br>
                             </div>
 
@@ -38,20 +39,15 @@
                                 <div class="card">
                                     <div class="el-card-item">
                                         <div class="el-card-avatar el-overlay-1"> <img src="<?= base_url('assets/produk/').$value['foto'] ?>" alt="user" />
-                                            <div class="el-overlay">
-                                                <ul class="el-info">
-                                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="../plugins/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
-                                                    <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li>
-                                                </ul>
-                                            </div>
+                                           
                                         </div>
                                         <div class="el-card-content">
-                                            <h3 class="box-title"><?= $value['produk'] ?></h3> 
+                                            <h3 class="box-title"><?= $value['produk'] ?></h3>
                                             <small> <?= 'Rp. '.$value['harga'] ?> </small>
                                             <br>
                                             <small> <?= $value['kategori'] ?> </small>
                                             <br>
-                                            <button class="btn btn-sm btn-info"> Order </button>
+                                            <button class="btn btn-sm btn-info order" idprod="<?= $value['id_produk'] ?>" nmprod="<?= $value['produk'] ?>" hrgprod="<?= $value['harga'] ?>">Order </button>
                                             <br/> 
                                         </div>
                                     </div>

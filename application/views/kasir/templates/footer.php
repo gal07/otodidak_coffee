@@ -13,6 +13,7 @@
      <!-- All Jquery -->
      <!-- ============================================================== -->
      <script src="<?= base_url() ?>assets/backend/plugins/jquery/jquery.min.js"></script>
+     <script src="<?= base_url() ?>assets/js/cart.js"></script>
      <!-- Bootstrap tether Core JavaScript -->
      <script src="<?= base_url() ?>assets/backend/plugins/bootstrap/js/popper.min.js"></script>
      <script src="<?= base_url() ?>assets/backend/plugins/bootstrap/js/bootstrap.min.js"></script>
