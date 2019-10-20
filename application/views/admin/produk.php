@@ -51,7 +51,7 @@
                                                 <td><?= $i; ?>. </td>
                                                 <td><?= $value['kategori']; ?></td>
                                                 <td>
-                                                    <img src="<?php echo base_url('./assets/produk') . $value['foto']; ?> height=" 50px" ;>
+                                                    <img src="<?php echo base_url('./assets/produk/') . $value['foto']; ?> height=" 50px" ;>
                                                 </td>
                                                 <td><?= $value['produk']; ?></td>
                                                 <td>IDR. <?= number_format($value['harga']); ?></td>
