@@ -75,30 +75,7 @@
         <!-- ============================================================== -->
         <!-- Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <li>
-                            <a class="has-arrow" href="<?= base_url('kasir'); ?>"><i class="mdi mdi-gauge"></i>Dasbor Kasir </a>
-                        </li>
-
-                        <li>
-                            <a class="has-arrow" href="<?= base_url('antrian'); ?>" target="_blank"><i class="mdi mdi-av-timer" ></i>Antrian </a>
-                        </li>
-
-                        <li>
-                            <a class="has-arrow" href="<?= base_url('login/alurlogout'); ?>"><i class="mdi mdi-arrow-left"></i>Logout </a>
-                        </li>
-
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
+       
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->

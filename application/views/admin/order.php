@@ -17,7 +17,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Produk</h4>
+                        <h4 class="card-title">Order</h4>
                         <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button>
                         <?php if (validation_errors()) : ?>
                             <div class="alert alert-danger alert-dismissible">
@@ -51,7 +51,7 @@
                                                 <td><?= $i; ?>. </td>
                                                 <td><?= $value['kategori']; ?></td>
                                                 <td>
-                                                    <img src="<?php echo base_url('./assets/produk/') . $value['foto']; ?> height=" 50px" ;>
+                                                    <img src="<?php echo base_url('assets/produk/') . $value['foto']; ?>"  height="50px">
                                                 </td>
                                                 <td><?= $value['produk']; ?></td>
                                                 <td>IDR. <?= number_format($value['harga']); ?></td>
