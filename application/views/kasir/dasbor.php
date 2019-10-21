@@ -73,7 +73,7 @@
                                         <h4 class="card-title">Order : <?= date('d - m - Y') ?></h4>
                                         <h6 class="card-subtitle">Order ID <code><?=  rand() ?></code></h6>
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table id="adrs" class="table">
                                                 <thead>
                                                     <tr>
                                                         <th>Produk</th>
@@ -82,25 +82,63 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>kopi Luwak</td>
-                                                        <td>3</td>
-                                                        <td>Rp. 40000</td>
+                                                    <?php
+                                                     $totals = 0;
+                                                     if($cart_session == NULL):?>
+                                                     <tr>
+                                                         <td>Empty Card</td>
+                                                     </tr>
+                                                    <?php else:?>
+                                                    <?php
+                                                    foreach($cart_session as $val):
+                                                    $totals += $val->total;
+                                                    ?>
+                                                    <tr id="<?= $val->id ?>">
+                                                        <td> <small><?= $val->nama_produk ?></small> </td>
+                                                        <td class="text-center">
+                                                            <small>
+                                                                <?= $val->quantity ?>
+                                                            </small> 
+                                                            <!-- <small>
+                                                                <div class="col-12">
+                                                                <input iprd="<?//= $val->id_produk ?>" harga="<?//= $val->harga?>" id="c_<?//= $val->id?>"  value="<?//= $val->quantity ?>" min="1" class="form-control count ab" type="number">
+                                                                </div>
+                                                            </small> -->
+                                                        </td>
+                                                        <td> <small id="total_item_<?= $val->id ?>"><?= 'Rp. '.$val->total ?></small> </td>
+                                                        <td> <button type="button" title="Remove" class="btn btn-xs btn-danger remove hapusCart" cartid="<?= $val->id ?>"><i class="fa fa-times"></i></button> </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>kopi Sianida</td>
-                                                        <td>3</td>
-                                                        <td>Rp. 140000</td>
-                                                    </tr>
-                                                
+                                                    <?php endforeach;?>
+                                                    <?php endif;?>
+                                                  
                                                 </tbody>
                                                 <tfoot>
-                                                    <th>Total</th>
-                                                    <th></th>
-                                                    <th>Rp. 180000</th>
+                                                    <tr>
+                                                        <th>Total</th>
+                                                        <th colspan="2"> <small id="totalPrices"><?=($totals == 0 ? '' : 'Rp. '.$totals)  ?></small></th>
+                                                        <input type="hidden" id="bayarfield_hidden" class="form-control form-sm form-control-line" value="<?= $totals ?>">
+                                                    </tr>
+                                                   <tr>
+                                                        <th>Bayar</th>
+                                                        <th colspan="2">
+                                                         <small id="totalPrices">
+                                                            <input type="number" id="bayarfield" class="form-control form-sm form-control-line">
+                                                         </small>
+                                                        </th>
+                                                   </tr>
+                                                   <tr>
+                                                       <th>Kembalian</th>
+                                                       <th colspan="2">
+                                                        <small id="kembalian">
+                                                            <input readonly type="number" id="kembalian_field" class="form-control form-sm form-control-line">
+                                                         </small>
+                                                       </th>
+                                                   </tr>
                                                 </tfoot>
                                             </table>
                                         </div>
+                                        <button class="btn btn-warning" id="cancelsMenu"> Cancel </button>
+                                        <button class="btn btn-info" id="ordersMenu"> Order </button>
                                     </div>
                                 </div>
                             </div>
