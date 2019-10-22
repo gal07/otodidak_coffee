@@ -92,7 +92,7 @@
                             <a class="has-arrow" href="<?= base_url('admin/produk'); ?>"><i class="mdi mdi-cart"></i>Produk </a>
                         </li>
                         <li>
-                            <a class="has-arrow" href="<?= base_url('admin/order'); ?>"><i class="mdi mdi-cart"></i>Order </a>
+                            <a class="has-arrow" href="<?= base_url('order/index'); ?>"><i class="mdi mdi-cart"></i>Order </a>
                         </li>
                         <li>
                             <a class="has-arrow" href="<?= base_url('login/alurlogout'); ?>"><i class="mdi mdi-arrow-left"></i>Logout </a>

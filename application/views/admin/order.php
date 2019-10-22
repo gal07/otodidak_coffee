@@ -18,7 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Order</h4>
-                        <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button>
+                        <!-- <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button> -->
                         <?php if (validation_errors()) : ?>
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -32,48 +32,48 @@
                                 <thead>
                                     <tr>
                                         <th>No. </th>
-                                        <th>Kategori</th>
-                                        <th>Foto</th>
-                                        <th>Produk</th>
-                                        <th>Harga</th>
+                                        <th>ID Order</th>
+                                        <th>Tanggal</th>
+                                        <th>Total</th>
+                                        <th>Bayar</th>
+                                        <th>Kembalian</th>
                                         <th>Status</th>
                                         <th style="width:125px;">Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
-                                    if ($data != null) {
+                                    if ($order != null) {
                                         $i = 1;
-                                        foreach ($data as $value) :
+                                        foreach ($order as $value) :
 
                                             ?>
                                             <tr>
                                                 <td><?= $i; ?>. </td>
-                                                <td><?= $value['kategori']; ?></td>
+                                                <td><?= $value->id_order ?></td>
+                                                <td><?= $value->tanggal ?></td>
+                                                <td><?= 'Rp. '.number_format($value->total_harga,0,',','.') ?></td>
+                                                <td><?= 'Rp. '.number_format($value->bayar,0,',','.') ?></td>
+                                                <td><?= 'Rp. '.number_format($value->kembalian,0,',','.') ?></td>
                                                 <td>
-                                                    <img src="<?php echo base_url('assets/produk/') . $value['foto']; ?>"  height="50px">
-                                                </td>
-                                                <td><?= $value['produk']; ?></td>
-                                                <td>IDR. <?= number_format($value['harga']); ?></td>
-                                                <td>
-                                                    <?php if ($value['status'] == 1) : ?>
+                                                    <?php if ($value->status == 2) : ?>
                                                         <form action="<?= base_url('admin/tak'); ?>" method="post">
-                                                            <input type="hidden" name="id_produk" value="<?= $value['id_produk']; ?>">
+                                                            <input type="hidden" name="id_produk" value="<?= $value->id_order; ?>">
                                                             <input type="hidden" name="status" value="0">
-                                                            <button type="submit" class="btn btn-success btn-xs">Aktif</button>
+                                                            <button type="submit" class="btn btn-success btn-xs">Selesai</button>
                                                         </form>
 
-                                                    <?php elseif ($value['status'] == 0) : ?>
+                                                    <?php elseif ($value->status == 1) : ?>
                                                         <form action="<?= base_url('admin/ak'); ?>" method="post">
-                                                            <input type="hidden" name="id_produk" value="<?= $value['id_produk']; ?>">
+                                                            <input type="hidden" name="id_produk" value="<?= $value->id_order; ?>">
                                                             <input type="hidden" name="status" value="1">
-                                                            <button type="submit" class="btn btn-danger btn-xs">Tidak Aktif</button>
+                                                            <button type="submit" class="btn btn-danger btn-xs">Pending</button>
                                                         </form>
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url('admin/edit_produk?id=' . $value['id_produk'] . '') ?>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
-                                                    <a href="<?= base_url('admin/hp?id=' . $value['id_produk'] . '&pict=' . $value['foto']) ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
+                                                    <a href="<?= base_url('order/detail?id='.$value->id_order) ?>" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                                    <a href="<?= base_url('admin/hp?id=' . $value->id_order . '&pict=') ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -90,6 +90,7 @@
                                             <td style="display: none;"></td>
                                             <td style="display: none;"></td>
                                             <td style="display: none;"></td>
+                                            <td style="display: none;"></td>
 
                                         </tr>
                                     <?php
@@ -100,10 +101,11 @@
                                 <tfoot>
                                     <tr>
                                         <th>No. </th>
-                                        <th>Kategori </th>
-                                        <th>Foto</th>
-                                        <th>Produk</th>
-                                        <th>Harga</th>
+                                        <th>ID Order</th>
+                                        <th>Tanggal</th>
+                                        <th>Total</th>
+                                        <th>Bayar</th>
+                                        <th>Kembalian</th>
                                         <th>Status</th>
                                         <th style="width:125px;">Aksi</th>
                                     </tr>
@@ -126,50 +128,6 @@
         <!-- ============================================================== -->
         <!-- End Right sidebar -->
         <!-- ============================================================== -->
-    </div>
-    <div id="tambah-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title">Tambah Produk</h4>
-                </div>
-                <form action="<?= base_url('admin/produk') ?>" method="POST" enctype="multipart/form-data">
-                    <div class="modal-body">
-
-                        <div class="form-group">
-                            <label for="recipient-name" class="control-label">Kategori:</label><br>
-                            <select name="id_kategori" id="id_kategori" class="form-control" autofocus>
-                                <option value="">=====</option>
-                                <?php foreach ($kategori as $k) : ?>
-                                    <option value="<?= $k['id_kategori']; ?>"><?= $k['kategori']; ?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="control-label">Upload Foto:</label><br>
-                            <input type="file" id="input-file-now" name="foto" class="dropify" />
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="control-label">Produk:</label>
-                            <input type="text" class="form-control" id="recipient-name" name="produk" autocomplete="off" autofocus value="<?= set_value('produk'); ?>">
-                            <span class="text-center"><?= form_error('produk'); ?></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="recipient-name" class="control-label">Harga:</label>
-                            <input type="text" class="form-control" id="recipient-name" name="harga" autocomplete="off" value="<?= set_value('harga'); ?>">
-                            <span class="text-center"><?= form_error('harga'); ?></span>
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-info waves-effect waves-light">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
     </div>
     <!-- ============================================================== -->
     <!-- End Container fluid  -->

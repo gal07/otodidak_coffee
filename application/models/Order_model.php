@@ -63,7 +63,32 @@ class Order_model extends CI_Model
         }else{
             return FALSE;
         }
-    }
+	}
+	
+	public function getOrder($id=NULL)
+	{
+		$get = NULL;
+		if ($id != NULL) {
+			$this->db->select('*');
+			$this->db->from('order');
+			$this->db->join('order_detail', 'order_detail.id_order = order.id_order');
+			$this->db->join('produk', 'order_detail.id_produk = produk.id_produk');
+			$this->db->where('order.id_order',$id);
+			$get = $this->db->get();
+		} else {
+			$get = $this->db->select('*')
+							->from('order')
+							->order_by('tanggal','ASC')
+							->get();
+		}
+
+		if ($get->num_rows() > 0) {
+			return $get->result();
+		} else {
+			return FALSE;
+		}
+	}
+	
 
 	
 }

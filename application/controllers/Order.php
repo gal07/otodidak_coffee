@@ -3,13 +3,30 @@
 class Order extends CI_Controller
 {
 
-    public function __construct()
+    public function __constrsuct()
     {
         parent::__construct();
         if (!$this->session->userdata('username')) {
             redirect('forbidden');
-        } elseif ($this->session->userdata('role') == 1) {
+        } 
+    }
+
+    public function index($admin = 'order')
+    {
+
+        if (!$this->session->userdata('role') == 2) {
             redirect('forbidden');
+        } 
+
+        if (!file_exists(APPPATH . 'views/admin/' . $admin . '.php')) {
+            show_404();
+        } else {
+            $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['order'] = $this->order_model->getOrder();
+            $data['title'] = 'Dasbor Admin';
+            $this->load->view('admin/templates/header', $data);
+            $this->load->view('admin/' . $admin);
+            $this->load->view('admin/templates/footer');
         }
     }
 
@@ -44,10 +61,28 @@ class Order extends CI_Controller
             }
             echo json_encode($message);
         }
-
-    
-
-
-
     }
+
+
+    public function detail($admin = 'detail_order')
+    {
+
+        if (!$this->session->userdata('role') == 2) {
+            redirect('forbidden');
+        } 
+
+        if (!file_exists(APPPATH . 'views/admin/' . $admin . '.php')) {
+            show_404();
+        } else {
+            $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+            $data['order'] = $this->order_model->getOrder($this->input->get('id'));
+            $data['title'] = 'Dasbor Admin';
+            $this->load->view('admin/templates/header', $data);
+            $this->load->view('admin/' . $admin);
+            $this->load->view('admin/templates/footer');
+        }
+    }
+
+
+
 }
