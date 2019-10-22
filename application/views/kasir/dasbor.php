@@ -71,7 +71,8 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Order : <?= date('d - m - Y') ?></h4>
-                                        <h6 class="card-subtitle">Order ID <code><?= date('ymd').''.rand(1000,4000) ?></code></h6>
+                                        <h6 class="card-subtitle">Order ID <code id="idord"></code></h6>
+                                        <input type="hidden" name="" id="orderid" value="">
                                         <div class="table-responsive">
                                             <table id="adrs" class="table">
                                                 <thead>
@@ -113,6 +114,7 @@
                                                   
                                                 </tbody>
                                                 <tfoot>
+                                                    <form id="form_order" action="#" method="post">
                                                     <tr>
                                                         <th>Total</th>
                                                         <th colspan="2"> <small id="totalPrices"><?=($totals == 0 ? '' : 'Rp. '.$totals)  ?></small></th>
@@ -122,7 +124,7 @@
                                                         <th>Bayar</th>
                                                         <th colspan="2">
                                                          <small id="totalPrices">
-                                                            <input type="number" id="bayarfield" class="form-control form-sm form-control-line">
+                                                            <input required type="number" id="bayarfield" class="form-control form-sm form-control-line">
                                                          </small>
                                                         </th>
                                                    </tr>
@@ -130,7 +132,7 @@
                                                        <th>Kembalian</th>
                                                        <th colspan="2">
                                                         <small id="kembalian">
-                                                            <input readonly type="number" id="kembalian_field" class="form-control form-sm form-control-line">
+                                                            <input required readonly type="number" id="kembalian_field" class="form-control form-sm form-control-line">
                                                          </small>
                                                        </th>
                                                    </tr>
@@ -138,7 +140,8 @@
                                             </table>
                                         </div>
                                         <button class="btn btn-warning" id="cancelsMenu"> Cancel </button>
-                                        <button class="btn btn-info" id="ordersMenu"> Order </button>
+                                        <button class="btn btn-info" type="submit" id="ordersMenu"> Order </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

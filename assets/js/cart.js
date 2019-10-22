@@ -1,4 +1,8 @@
-$(document).ready(function(){ 
+$(document).ready(function(){
+    
+    let opp = ordid();
+    $("#idord").text(opp);
+    $("#orderid").val(opp);
 
     $("#bayarfield").on("keyup",function () { 
         console.log($(this).val())
@@ -158,9 +162,9 @@ $(document).ready(function(){
                      /* Remove table item */
                      $("table#adrs tbody tr").remove();     
                      /* add table price */
-                     var bayar = parseInt($("#bayarfield").val(0));
+                     var bayar = parseInt($("#bayarfield").val(''));
                      var kembalian = $("#kembalian_field"); 
-                     kembalian.val(0);
+                     kembalian.val('');
                      $("#totalPrices").text('Rp. 0');
                 
                  } else {
@@ -171,9 +175,61 @@ $(document).ready(function(){
 
       })
 
+      $("#form_order").submit(function (e) {
+		e.preventDefault();
+        /* Url */
+        var url = $("#url").val();
+
+        var orderid = $("#orderid").val();
+        var total = parseInt($("#bayarfield_hidden").val());
+        var bayar = parseInt($("#bayarfield").val());
+        var kembalian = $("#kembalian_field");
+        let yt = bayar-total;
+        let data = {
+            total:total,
+            bayar:bayar,
+            kembalian:yt,
+            orderid:orderid
+        }
+       
+        $.ajax({
+            type: "post",
+            url: url+'order',
+            data:data,
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                // return false;
+                /* If success */
+                if (response.success == 1) {
+                    /* Remove table item */
+                    $("table#adrs tbody tr").remove();     
+                    /* add table price */
+                    var bayar = parseInt($("#bayarfield").val(''));
+                    var kembalian = $("#kembalian_field"); 
+                    kembalian.val('');
+                    $("#totalPrices").text('Rp. 0');
+
+                    let ad = ordid();
+                    $("#idord").text(ad);
+                    $("#orderid").val(ad);
+               
+                } else {
+                    alert('Failed')
+                }
+            }
+        });
+
+     })
+
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function ordid() {
+        let id = Math.floor(Math.random() * 100000) + 1;
+        return id; 
     }
 
 })
