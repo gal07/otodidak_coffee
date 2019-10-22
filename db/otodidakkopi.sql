@@ -1,6 +1,6 @@
 /*
 SQLyog Community v13.1.1 (64 bit)
-MySQL - 10.1.30-MariaDB : Database - otodidakkopi
+MySQL - 10.1.32-MariaDB : Database - u4412647_otodidak
 *********************************************************************
 */
 
@@ -16,6 +16,22 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`u4412647_otodidak` /*!40100 DEFAULT CHA
 
 USE `u4412647_otodidak`;
 
+/*Table structure for table `antrian` */
+
+DROP TABLE IF EXISTS `antrian`;
+
+CREATE TABLE `antrian` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `id_order_detail` int(5) DEFAULT NULL,
+  `status` int(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `status` (`status`),
+  KEY `antrian_ibfk_1` (`id_order_detail`),
+  CONSTRAINT `antrian_ibfk_1` FOREIGN KEY (`id_order_detail`) REFERENCES `order_detail` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `antrian` */
+
 /*Table structure for table `cart_sessions` */
 
 DROP TABLE IF EXISTS `cart_sessions`;
@@ -29,7 +45,7 @@ CREATE TABLE `cart_sessions` (
   `harga` decimal(18,0) DEFAULT NULL,
   `total` decimal(18,0) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cart_sessions` */
 
@@ -49,6 +65,46 @@ insert  into `kategori`(`id_kategori`,`kategori`) values
 (6,'Espreso Based'),
 (7,'Bukan Kopi'),
 (8,'Manual Brew');
+
+/*Table structure for table `order` */
+
+DROP TABLE IF EXISTS `order`;
+
+CREATE TABLE `order` (
+  `id_order` int(10) NOT NULL,
+  `id_user` int(2) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `total_harga` decimal(18,0) DEFAULT NULL,
+  `bayar` decimal(18,0) DEFAULT NULL,
+  `kembalian` decimal(18,0) DEFAULT NULL,
+  `note` text,
+  `status` int(1) DEFAULT '1',
+  PRIMARY KEY (`id_order`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `order` */
+
+/*Table structure for table `order_detail` */
+
+DROP TABLE IF EXISTS `order_detail`;
+
+CREATE TABLE `order_detail` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id_order` int(10) DEFAULT NULL,
+  `id_produk` int(11) DEFAULT NULL,
+  `qty` int(3) DEFAULT NULL,
+  `harga` decimal(18,0) DEFAULT NULL,
+  `status` int(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  KEY `id_order` (`id_order`),
+  KEY `order_detail_ibfk_2` (`id_produk`),
+  CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`id_order`) REFERENCES `order` (`id_order`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`id_produk`) REFERENCES `produk` (`id_produk`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+/*Data for the table `order_detail` */
 
 /*Table structure for table `produk` */
 
