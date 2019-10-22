@@ -126,7 +126,6 @@ class Kasir extends CI_Controller
             $message = array(
                 'success'=>1,
                 'msg'=>'Cancel',
-                'data'=>$cart_session
             );
         } else {
             $message = array(

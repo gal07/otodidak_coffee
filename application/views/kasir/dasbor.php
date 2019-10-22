@@ -71,7 +71,7 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <h4 class="card-title">Order : <?= date('d - m - Y') ?></h4>
-                                        <h6 class="card-subtitle">Order ID <code><?=  rand() ?></code></h6>
+                                        <h6 class="card-subtitle">Order ID <code><?= date('ymd').''.rand(1000,4000) ?></code></h6>
                                         <div class="table-responsive">
                                             <table id="adrs" class="table">
                                                 <thead>

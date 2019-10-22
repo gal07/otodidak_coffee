@@ -143,13 +143,13 @@ $(document).ready(function(){
 
 
      $("#cancelsMenu").on("click",function () { 
-        
+
          /* Url */
          var url = $("#url").val();
         
          $.ajax({
              type: "post",
-             url: url+'deletecart',
+             url: url+'cancelcart',
              dataType: "json",
              success: function (response) {
                  console.log(response);
