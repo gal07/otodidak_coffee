@@ -34,8 +34,8 @@
                                         <th>No. </th>
                                         <th>ID Order</th>
                                         <th>Tanggal</th>
-                                        <th>Total</th>
                                         <th>Bayar</th>
+                                        <th>Total</th>
                                         <th>Kembalian</th>
                                         <th>Status</th>
                                         <th style="width:125px;">Aksi</th>
@@ -52,22 +52,22 @@
                                                 <td><?= $i; ?>. </td>
                                                 <td><?= $value->id_order ?></td>
                                                 <td><?= $value->tanggal ?></td>
-                                                <td><?= 'Rp. '.number_format($value->total_harga,0,',','.') ?></td>
                                                 <td><?= 'Rp. '.number_format($value->bayar,0,',','.') ?></td>
+                                                <td><?= 'Rp. '.number_format($value->total_harga,0,',','.') ?></td>
                                                 <td><?= 'Rp. '.number_format($value->kembalian,0,',','.') ?></td>
                                                 <td>
                                                     <?php if ($value->status == 2) : ?>
                                                         <form action="<?= base_url('admin/tak'); ?>" method="post">
                                                             <input type="hidden" name="id_produk" value="<?= $value->id_order; ?>">
                                                             <input type="hidden" name="status" value="0">
-                                                            <button type="submit" class="btn btn-success btn-xs">Selesai</button>
+                                                            <button type="button" class="btn btn-success btn-xs">Selesai</button>
                                                         </form>
 
                                                     <?php elseif ($value->status == 1) : ?>
                                                         <form action="<?= base_url('admin/ak'); ?>" method="post">
                                                             <input type="hidden" name="id_produk" value="<?= $value->id_order; ?>">
                                                             <input type="hidden" name="status" value="1">
-                                                            <button type="submit" class="btn btn-danger btn-xs">Pending</button>
+                                                            <button type="button" class="btn btn-danger btn-xs">Pending</button>
                                                         </form>
                                                     <?php endif; ?>
                                                 </td>

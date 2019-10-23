@@ -13,6 +13,8 @@
     <title><?= $title; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/backend/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+     <!--alerts CSS -->
+     <link href="<?= base_url() ?>assets/backend/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/backend/css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
@@ -83,6 +85,10 @@
                     <ul id="sidebarnav">
                         <li>
                             <a class="has-arrow" href="<?= base_url('kasir'); ?>"><i class="mdi mdi-gauge"></i>Dasbor Kasir </a>
+                        </li>
+
+                        <li>
+                            <a class="has-arrow" href="<?= base_url('prosesmenu'); ?>"><i class="mdi mdi-av-timer" ></i>Proses </a>
                         </li>
 
                         <li>

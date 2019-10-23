@@ -55,6 +55,9 @@ $route['deletecart'] = 'kasir/DeleteCartSession';
 $route['cartupdate'] = 'kasir/updateViewCart';
 $route['cancelcart'] = 'kasir/Cancel';
 $route['order'] = 'order/NewOrder';
+$route['cekcart'] = 'kasir/checkcart';
+$route['prosesmenu'] = 'kasir/Proses';
+
 
 
 

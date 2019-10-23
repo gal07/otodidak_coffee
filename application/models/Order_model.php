@@ -88,6 +88,44 @@ class Order_model extends CI_Model
 			return FALSE;
 		}
 	}
+
+	public function getAntrianDetail($id)
+	{
+			$wheres = array(
+				'order_detail.status'=>1,
+				'order_detail.id_order'=>$id
+			);
+
+			$this->db->select('antrian.id,order_detail.id AS id_detail,order_detail.id_order,produk.produk,order_detail.qty');
+			$this->db->from('antrian');
+			$this->db->join('order_detail', 'antrian.id_order_detail = order_detail.id');
+			$this->db->join('produk', 'order_detail.id_produk = produk.id_produk');
+			$this->db->where($wheres);
+			$get = $this->db->get();
+
+			if ($get->num_rows() > 0) {
+				return $get->result();
+			} else {
+				return FALSE;
+			}
+	}
+
+	public function getOrderAntrian($id=NULL)
+	{
+		
+		$get = $this->db->select('*')
+						->from('order')
+						->order_by('tanggal','ASC')
+						->where('status',1)
+						->get();
+		
+
+		if ($get->num_rows() > 0) {
+			return $get->result();
+		} else {
+			return FALSE;
+		}
+	}
 	
 
 	

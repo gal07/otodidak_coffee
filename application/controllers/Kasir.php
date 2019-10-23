@@ -14,6 +14,8 @@ class Kasir extends CI_Controller
             redirect('forbidden');
         }
     }
+
+
     public function index($kasir = 'dasbor')
     {
         if (!file_exists(APPPATH . 'views/kasir/' . $kasir . '.php')) {
@@ -29,6 +31,20 @@ class Kasir extends CI_Controller
             $this->session->set_userdata($setData);
             $data['produk'] = $this->produk_model->get();
             $data['cart_session'] = $this->kasir_model->GetCartByUsers($this->session->userdata('id'));
+            $data['title'] = 'Dasbor Kasir';
+            $this->load->view('kasir/templates/header', $data);
+            $this->load->view('kasir/' . $kasir);
+            $this->load->view('kasir/templates/footer');
+        }
+    }
+
+    public function Proses($kasir = 'proses_menu')
+    {
+        if (!file_exists(APPPATH . 'views/kasir/' . $kasir . '.php')) {
+            show_404();
+        } else {
+            $data['user'] = $this->db->get_where('user', ['username' =>
+            $this->session->userdata('username')])->row_array();
             $data['title'] = 'Dasbor Kasir';
             $this->load->view('kasir/templates/header', $data);
             $this->load->view('kasir/' . $kasir);
@@ -135,6 +151,24 @@ class Kasir extends CI_Controller
         }
         echo json_encode($message);
         
+    }
+
+    public function checkCart()
+    {
+        $cart_session = $this->kasir_model->GetCartByUsers($this->session->userdata('id'));
+        if ($cart_session) {
+            $message = array(
+                'success'=>1,
+                'msg'=>'Cancel',
+            );
+        } else {
+            $message = array(
+                'success'=>0,
+                'msg'=>'Fail Deleted',
+            );
+        }
+        echo json_encode($message);
+
     }
 
 }

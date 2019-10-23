@@ -59,6 +59,23 @@
                             </div>
 
                             <?php endforeach;?>
+                            <div class="row">
+                                    <div class="col-md-12 col-sm-4 p-20">
+                                        <h4 class="card-title">Button items</h4>
+                                        <div class="list-group">
+                                            <button type="button" class="list-group-item">Cras justo odio 
+                                            <ul>
+                                                <li class="text-left">Kopi</li>
+                                                <li class="text-left">Kentang</li>
+                                            </ul>
+                                            <a class="btn btn-success text-white">Selesai</a> </button>
+                                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
+                                            <button type="button" class="list-group-item">Morbi leo risus</button>
+                                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
+                                            <button type="button" class="list-group-item">Vestibulum at eros</button>
+                                        </div>
+                                    </div>
+                                </div>
                     </div>
                         <!-- End Produk Content -->
 

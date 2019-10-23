@@ -28,6 +28,8 @@
      <script src="<?= base_url() ?>assets/backend/plugins/sparkline/jquery.sparkline.min.js"></script>
      <!--Custom JavaScript -->
      <script src="<?= base_url() ?>assets/backend/js/custom.min.js"></script>
+      <!-- Sweet-Alert  -->
+     <script src="<?= base_url() ?>assets/backend/plugins/sweetalert/sweetalert.min.js"></script>
      <!-- ============================================================== -->
      <!-- Style switcher -->
      <!-- ============================================================== -->

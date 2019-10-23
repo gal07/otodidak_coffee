@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    
+    "use strict";
     let opp = ordid();
     $("#idord").text(opp);
     $("#orderid").val(opp);
@@ -191,34 +191,89 @@ $(document).ready(function(){
             kembalian:yt,
             orderid:orderid
         }
-       
+
+        
         $.ajax({
             type: "post",
-            url: url+'order',
-            data:data,
+            url: url+'cekcart',
             dataType: "json",
             success: function (response) {
-                console.log(response);
-                // return false;
-                /* If success */
-                if (response.success == 1) {
-                    /* Remove table item */
-                    $("table#adrs tbody tr").remove();     
-                    /* add table price */
-                    var bayar = parseInt($("#bayarfield").val(''));
-                    var kembalian = $("#kembalian_field"); 
-                    kembalian.val('');
-                    $("#totalPrices").text('Rp. 0');
+                if ( response.success == 1) {
 
-                    let ad = ordid();
-                    $("#idord").text(ad);
-                    $("#orderid").val(ad);
-               
+                    /* jika bayar lebih kecil dari total */
+                    if (bayar < total) {
+                        swal("Error", "Uang Yang Dibayarkan Kurang", "error");   
+                    } else {
+
+                        swal({   
+                            title: "Tekan yes untuk melanjutkan order",   
+                            text: "Pastikan Pesanan Tidak Salah",   
+                            type: "warning",   
+                            showCancelButton: true,   
+                            confirmButtonColor: "#1e88e5",   
+                            confirmButtonText: "Ya, Order",  
+                            cancelButtonColor: "#e52424", 
+                            cancelButtonText: "Batalkan",   
+                            closeOnConfirm: false,   
+                            closeOnCancel: false 
+                        }, function(isConfirm){   
+                            if (isConfirm) {     
+                                $.ajax({
+                                    type: "post",
+                                    url: url+'order',
+                                    data:data,
+                                    dataType: "json",
+                                    success: function (response) {
+                                        console.log(response);
+                                        // return false;
+                                        /* If success */
+                                        if (response.success == 1) {
+                        
+                                            swal({   
+                                                title: "Order Berhasil Dibuat",
+                                                type: "success",
+                                                text: "Pesanan Sedang Di Proses",   
+                                                timer: 1000,   
+                                                showConfirmButton: false 
+                                            });
+                        
+                                            /* Remove table item */
+                                            $("table#adrs tbody tr").remove();     
+                                            /* add table price */
+                                            var bayar = parseInt($("#bayarfield").val(''));
+                                            var kembalian = $("#kembalian_field"); 
+                                            kembalian.val('');
+                                            $("#totalPrices").text('Rp. 0');
+                        
+                                            let ad = ordid();
+                                            $("#idord").text(ad);
+                                            $("#orderid").val(ad);
+                                       
+                                        } else {
+                                            alert('Failed')
+                                        }
+                                    }
+                                });   
+                            } else {     
+                                swal("Batal", "Pesanan Dibatalkan", "error");   
+                            } 
+                        });
+                        
+                    }
+
+                   
+
+                    
                 } else {
-                    alert('Failed')
+
+
+                    swal("Error", "Tidak ada menu yang dipilih", "error");   
+
+                    
                 }
             }
-        });
+        });        
+       
 
      })
 
