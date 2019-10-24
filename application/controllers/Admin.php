@@ -255,4 +255,22 @@ class Admin extends CI_Controller
     </div>');
         redirect(base_url('admin/produk'));
     }
+    public function ho()
+    {
+        $id = $this->input->post('idorder');
+        $delete = $this->order_model->Hapus($id);
+        $message = array();
+            if ($delete) {
+                $message = array(
+                    'success'=>1,
+                    'msg'=>'Hapus Order',
+                );
+            } else {
+                $message = array(
+                    'success'=>0,
+                    'msg'=>'Fail Hapus Order',
+                );
+            }
+            echo json_encode($message);
+    }
 }

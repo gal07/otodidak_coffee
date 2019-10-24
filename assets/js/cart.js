@@ -279,6 +279,57 @@ $(document).ready(function(){
      })
 
 
+     $(".deletes").on("click",function () {
+         /* Url */
+        var url = $("#url").val();
+        var id = $(this).attr("idord");
+        var data = {
+            "idorder":id
+        };
+        swal({   
+            title: "Apakah Anda Ingin Menghapus Order Ini ?",   
+            text: "Pastikan Keputusan Anda",   
+            type: "warning",   
+            showCancelButton: true,   
+            confirmButtonColor: "#1e88e5",   
+            confirmButtonText: "Ya",  
+            cancelButtonColor: "#e52424", 
+            cancelButtonText: "Batalkan",   
+            closeOnConfirm: false,   
+            closeOnCancel: false 
+        }, function(isConfirm){   
+            if (isConfirm) {     
+                $.ajax({
+                    type: "post",
+                    url: url+'hapusorder',
+                    data:data,
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        // return false;
+                        /* If success */
+                        if (response.success == 1) {
+                            $("#c_"+id).remove();
+                            swal({   
+                                title: "Order Berhasil Dihapus",
+                                type: "success",
+                                text: "Data Tidak Bisa Di Restore",   
+                                timer: 1000,   
+                                showConfirmButton: false 
+                            });
+                       
+                        } else {
+                            alert('Failed')
+                        }
+                    }
+                });   
+            } else {     
+                swal("Batal", "Dibatalkan", "error");   
+            } 
+        });
+
+      })
+
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }

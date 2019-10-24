@@ -83,6 +83,32 @@ class Order extends CI_Controller
         }
     }
 
+    public function getOrderAjax()
+    {
+        
+        if (!$this->input->is_ajax_request()) {
+            redirect('forbidden');
+        }
+
+        $order = $this->order_model->getOrder();
+            $message = array();
+            if ($order) {
+                $message = array(
+                    'success'=>1,
+                    'msg'=>' Order',
+                    'data'=>$order
+                );
+            } else {
+                $message = array(
+                    'success'=>0,
+                    'msg'=>'Fail  Order',
+                );
+            }
+            echo json_encode($message);
+
+
+    }
+
 
 
 }

@@ -58,6 +58,9 @@ $route['order'] = 'order/NewOrder';
 $route['cekcart'] = 'kasir/checkcart';
 $route['prosesmenu'] = 'kasir/Proses';
 $route['cetak'] = 'cetak/index';
+$route['hapusorder'] = 'admin/ho';
+$route['getorderajax'] = 'order/getOrderAjax';
+
 
 
 

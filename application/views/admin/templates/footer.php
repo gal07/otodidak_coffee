@@ -13,6 +13,7 @@
      <!-- All Jquery -->
      <!-- ============================================================== -->
      <script src="<?= base_url() ?>assets/backend/plugins/jquery/jquery.min.js"></script>
+     <script src="<?= base_url() ?>assets/js/cart.js"></script>
      <!-- Bootstrap tether Core JavaScript -->
      <script src="<?= base_url() ?>assets/backend/plugins/bootstrap/js/popper.min.js"></script>
      <script src="<?= base_url() ?>assets/backend/plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -28,13 +29,13 @@
      <!--Custom JavaScript -->
      <script src="<?= base_url() ?>assets/backend/js/custom.min.js"></script>
      <script src="<?= base_url() ?>assets/backend/plugins/dropify/dist/js/dropify.min.js"></script>
-     <script>
+      <!-- Sweet-Alert  -->
+      <script src="<?= base_url() ?>assets/backend/plugins/sweetalert/sweetalert.min.js"></script>
+     <script></script>
          <!-- ============================================================== -->
          <!-- Style switcher -->
          <!-- ============================================================== -->
-         <
-         script src = "<?= base_url() ?>assets/backend/plugins/styleswitcher/jQuery.style.switcher.js" >
-     </script>
+         <script src = "<?= base_url() ?>assets/backend/plugins/styleswitcher/jQuery.style.switcher.js"></script>
      <!-- This is data table -->
      <script src="<?= base_url() ?>assets/backend/plugins/datatables/jquery.dataTables.min.js"></script>
      <!-- start - This is for export functionality only -->

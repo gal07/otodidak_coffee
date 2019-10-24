@@ -1,4 +1,6 @@
 <div class="page-wrapper">
+<input type="hidden" name="url" id="url" value="<?= base_url() ?>">
+
     <!-- ============================================================== -->
     <!-- Container fluid  -->
     <!-- ============================================================== -->
@@ -35,14 +37,14 @@
                                 if($order != NULL): ?>
                                 <?php
                                     foreach( $order as $vals ): ?>
-                                    <div class="col-md-4 col-sm-4 p-20">
+                                    <div class="col-md-4 col-sm-4 p-20 menus" id="m_ord_<?= $vals->id_order ?>">
                                         <h4 class="card-title">#<?=$vals->id_order?> <a class="btn btn-danger text-white"><i class="fa fa-clock-o"></i></a></h4>
                                         <div class="list-group">
-                                        <?php
-                                        $antrian = $this->order_model->getAntrianDetail($vals->id_order);
-                                        foreach( $antrian as $vall ): ?>
-                                        <button type="button" class="list-group-item"><?= $vall->produk ?> <span class="badge badge-danger ml-auto"><?= $vall->qty ?></span></button>
-                                        <?php endforeach; ?>
+                                            <?php
+                                            $antrian = $this->order_model->getAntrianDetail($vals->id_order);
+                                            foreach( $antrian as $vall ): ?>
+                                            <button type="button" class="list-group-item"><?= $vall->produk ?> <span class="badge badge-danger ml-auto"><?= $vall->qty ?></span></button>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
                                     <?php endforeach; ?>

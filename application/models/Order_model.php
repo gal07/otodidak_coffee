@@ -126,6 +126,14 @@ class Order_model extends CI_Model
 			return FALSE;
 		}
 	}
+
+	public function Hapus($id)
+    {
+       $this->db->where('id_order',$id);
+	   $hapus = $this->db->delete('order');
+	   return TRUE;
+    }
+
 	
 
 	

@@ -18,6 +18,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Order</h4>
+                        <input type="hidden" name="url" id="url" value="<?= base_url() ?>">
                         <!-- <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button> -->
                         <?php if (validation_errors()) : ?>
                             <div class="alert alert-danger alert-dismissible">
@@ -48,7 +49,7 @@
                                         foreach ($order as $value) :
 
                                             ?>
-                                            <tr>
+                                            <tr id="c_<?= $value->id_order ?>">
                                                 <td><?= $i; ?>. </td>
                                                 <td><?= $value->id_order ?></td>
                                                 <td><?= $value->tanggal ?></td>
@@ -72,8 +73,8 @@
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url('order/detail?id='.$value->id_order) ?>" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
-                                                    <a href="<?= base_url('admin/hp?id=' . $value->id_order . '&pict=') ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
+                                                    <a href="<?= base_url('order/detail?id='.$value->id_order) ?>"  data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                                    <a href="#" class="deletes" idord="<?= $value->id_order ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
                                             </tr>
                                             <?php

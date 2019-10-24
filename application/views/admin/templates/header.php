@@ -13,6 +13,8 @@
     <title><?= $title; ?></title>
     <!-- Bootstrap Core CSS -->
     <link href="<?= base_url() ?>assets/backend/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--alerts CSS -->
+    <link href="<?= base_url() ?>assets/backend/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
     <!-- Custom CSS -->
     <link href="<?= base_url() ?>assets/backend/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url() ?>assets/backend/plugins/dropify/dist/css/dropify.min.css">
