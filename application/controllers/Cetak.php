@@ -134,7 +134,7 @@ class Cetak extends CI_Controller
         
         $pdf->lastPage();
         
-        $pdf->Output('Surat Keterangan Yayasan Pendidikan Dharma Karya.pdf', 'I');
+        $pdf->Output('Struk Pembelian #'.$getID, 'I');
         
         //============================================================+
         // END OF FILE
