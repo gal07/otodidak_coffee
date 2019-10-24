@@ -21,6 +21,9 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 /nbproject/
 .idea/*
 
+## Images Produk
+/assets/produk/
+
 ## Sublime Text cache files
 *.tmlanguage.cache
 *.tmPreferences.cache

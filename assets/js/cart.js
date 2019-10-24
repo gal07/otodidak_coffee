@@ -224,6 +224,7 @@ $(document).ready(function(){
                                     data:data,
                                     dataType: "json",
                                     success: function (response) {
+                                        window.open(url+'cetak?idorder='+orderid, '_blank');
                                         console.log(response);
                                         // return false;
                                         /* If success */
@@ -244,7 +245,7 @@ $(document).ready(function(){
                                             var kembalian = $("#kembalian_field"); 
                                             kembalian.val('');
                                             $("#totalPrices").text('Rp. 0');
-                        
+
                                             let ad = ordid();
                                             $("#idord").text(ad);
                                             $("#orderid").val(ad);

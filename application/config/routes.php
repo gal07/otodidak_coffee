@@ -57,6 +57,8 @@ $route['cancelcart'] = 'kasir/Cancel';
 $route['order'] = 'order/NewOrder';
 $route['cekcart'] = 'kasir/checkcart';
 $route['prosesmenu'] = 'kasir/Proses';
+$route['cetak'] = 'cetak/index';
+
 
 
 
