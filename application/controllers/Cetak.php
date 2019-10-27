@@ -61,7 +61,7 @@ class Cetak extends CI_Controller
         // set document information
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor('Dharma Karya');
-        $pdf->SetTitle('Surat Keterangan Yayasan Pendidikan Dharma Karya');
+        $pdf->SetTitle('Struk Pembelian #'.$getID);
         $pdf->SetSubject('TCPDF Tutorial');
         $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
         
