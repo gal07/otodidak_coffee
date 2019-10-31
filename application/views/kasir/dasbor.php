@@ -22,7 +22,7 @@
                 </div>
             </div>
 
-            <div class="col-8">
+            <div class="col-md-8 col-sm-6">
                 <div class="card">
                     <div class="card-body">
                     <!-- Produk Content -->
@@ -35,7 +35,7 @@
 
                             <?php foreach($produk as $value):?>
 
-                            <div class="col-lg-3 col-md-6">
+                            <div class="col-lg-3 col-md-6 col-sm-5">
                                 <div class="card">
                                     <div class="el-card-item">
                                         <div class="el-card-avatar el-overlay-1"> <img src="<?= base_url('assets/produk/').$value['foto'] ?>" alt="user" />
@@ -61,7 +61,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-md-4 col-sm-6">
                <div class="card">
                     <div class="card-body">
                         <h5 class="text-center"> Cart </h5>

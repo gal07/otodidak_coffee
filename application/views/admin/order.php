@@ -57,14 +57,14 @@
                                                 <td><?= 'Rp. '.number_format($value->total_harga,0,',','.') ?></td>
                                                 <td><?= 'Rp. '.number_format($value->kembalian,0,',','.') ?></td>
                                                 <td>
-                                                    <?php if ($value->status == 2) : ?>
+                                                    <?php if ($value->status == 3) : ?>
                                                         <form action="<?= base_url('admin/tak'); ?>" method="post">
                                                             <input type="hidden" name="id_produk" value="<?= $value->id_order; ?>">
                                                             <input type="hidden" name="status" value="0">
                                                             <button type="button" class="btn btn-success btn-xs">Selesai</button>
                                                         </form>
 
-                                                    <?php elseif ($value->status == 1) : ?>
+                                                    <?php elseif ($value->status == 1 || $value->status == 2) : ?>
                                                         <form action="<?= base_url('admin/ak'); ?>" method="post">
                                                             <input type="hidden" name="id_produk" value="<?= $value->id_order; ?>">
                                                             <input type="hidden" name="status" value="1">

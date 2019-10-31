@@ -60,7 +60,9 @@ $route['prosesmenu'] = 'kasir/Proses';
 $route['cetak'] = 'cetak/index';
 $route['hapusorder'] = 'admin/ho';
 $route['getorderajax'] = 'order/getOrderAjax';
-
+$route['orderselesai'] = 'order/OrderSelesai';
+$route['dashorderselesai'] = 'order/DashOrderSelesai';
+$route['orderdiambil'] = 'order/OrderDiambil';
 
 
 

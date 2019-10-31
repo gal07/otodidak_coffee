@@ -65,7 +65,7 @@ class Order_model extends CI_Model
         }
 	}
 	
-	public function getOrder($id=NULL)
+	public function getOrder($id=NULL,$status=NULL)
 	{
 		$get = NULL;
 		if ($id != NULL) {
@@ -110,14 +110,24 @@ class Order_model extends CI_Model
 			}
 	}
 
-	public function getOrderAntrian($id=NULL)
+	public function getOrderAntrian($id=NULL,$status=NULL)
 	{
-		
-		$get = $this->db->select('*')
+		$get='';
+		if ($status == NULL) {
+			$get = $this->db->select('*')
 						->from('order')
 						->order_by('tanggal','ASC')
 						->where('status',1)
 						->get();
+		} else {
+			$get = $this->db->select('*')
+						->from('order')
+						->order_by('tanggal','ASC')
+						->where('status',$status)
+						->get();
+		}
+		
+		
 		
 
 		if ($get->num_rows() > 0) {
@@ -125,6 +135,41 @@ class Order_model extends CI_Model
 		} else {
 			return FALSE;
 		}
+	}
+
+	public function orderDetail()
+	{
+
+		$this->db->select('order_detail.id,order_detail.id_order,order_detail.id_produk,order_detail.qty,order_detail.harga,produk.produk,order_detail.status');
+		$this->db->from('order_detail');
+		$this->db->join('produk', 'order_detail.id_produk = produk.id_produk');
+		$orderDetail = $this->db->get();
+		if ($orderDetail->num_rows() > 0) {
+			return $orderDetail->result();
+		} else {
+			return FALSE;
+		}
+	}
+
+	public function OrderFinish($id,$status=2)
+	{
+
+		$ids = array(
+			'id_order'=>$id
+		);
+
+		$update = array(
+			"status"=>$status
+		);
+
+		$this->db->where($ids);
+		$this->db->update('order', $update);
+
+		$this->db->where($ids);
+		$this->db->update('order_detail', $update);
+
+		return TRUE;
+		
 	}
 
 	public function Hapus($id)

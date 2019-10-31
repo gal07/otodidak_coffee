@@ -23,11 +23,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                     <!-- Produk Content -->
-                    <div class="row el-element-overlay">
+                    <div class="row el-element-overlay ord_belum_selesai">
                             <div class="col-md-12">
                                 <h4 class="card-title text-center">Proses</h4>
                                 <br>
@@ -38,7 +38,7 @@
                                 <?php
                                     foreach( $order as $vals ): ?>
                                     <div class="col-md-4 col-sm-4 p-20 menus" id="m_ord_<?= $vals->id_order ?>">
-                                        <h4 class="card-title">#<?=$vals->id_order?> <a class="btn btn-danger text-white"><i class="fa fa-clock-o"></i></a></h4>
+                                        <h4 class="card-title">#<?=$vals->id_order?> <a id="<?= $vals->id_order ?>" class="btn btn-danger text-white finishing"><i class="fa fa-clock-o"></i></a></h4>
                                         <div class="list-group">
                                             <?php
                                             $antrian = $this->order_model->getAntrianDetail($vals->id_order);
@@ -49,7 +49,7 @@
                                     </div>
                                     <?php endforeach; ?>
                                 <?php else: ?>
-                                <h5>No Order</h5>
+                                <!-- <h5>No Order</h5> -->
                                 <?php endif; ?>
                                     
                             
@@ -59,87 +59,36 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                     <!-- Produk Content -->
-                    <div class="row el-element-overlay">
+                    <div class="row el-element-overlay selesai_ord">
                             <div class="col-md-12">
-                                <h4 class="card-title text-center">Pesanan Siap</h4>
+                                <h4 class="card-title text-center">Finish</h4>
                                 <br>
                             </div>
-
-
-                            <div class="row">
-                                    <div class="col-md-4 col-sm-4 p-20">
-                                    <h4 class="card-title">Button items  <a class="btn btn-success text-white">Selesai</a>  </h4>
-                                        <div class="list-group">
-                                            <button type="button" class="list-group-item">Cras justo odio 
-                                            <ul>
-                                                <li class="text-left">Kopi</li>
-                                                <li class="text-left">Kentang</li>
-                                            </ul>
-                                            <a class="btn btn-success text-white">Selesai</a> </button>
-                                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                                            <button type="button" class="list-group-item">Morbi leo risus</button>
-                                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                                            <button type="button" class="list-group-item">Vestibulum at eros</button>
-                                        </div>
+                                <?php
+                                $orderfinish = $this->order_model->getOrderAntrian(NULL,2);
+                                if($orderfinish != NULL): ?>
+                                <?php
+                                    foreach( $orderfinish as $valss ): ?>
+                                    <div class="col-md-4 col-sm-4 p-20 menus2" id="selesai_<?= $valss->id_order ?>">
+                                        <h4 class="card-title">#<?=$valss->id_order?> <a id="<?= $valss->id_order ?>" class="btn btn-info text-white takeorder"><i class="fa fa-cutlery"></i></a></h4>
                                     </div>
-
-                                    <div class="col-md-4 col-sm-4 p-20">
-                                    <h4 class="card-title">Button items  <a class="btn btn-success text-white">Selesai</a>  </h4>
-                                        <div class="list-group">
-                                            <button type="button" class="list-group-item">Cras justo odio 
-                                            <ul>
-                                                <li class="text-left">Kopi</li>
-                                                <li class="text-left">Kentang</li>
-                                            </ul>
-                                            <a class="btn btn-success text-white">Selesai</a> </button>
-                                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-sm-4 p-20">
-                                    <h4 class="card-title">Button items  <a class="btn btn-success text-white">Selesai</a>  </h4>
-                                        <div class="list-group">
-                                            <button type="button" class="list-group-item">Cras justo odio 
-                                            <ul>
-                                                <li class="text-left">Kopi</li>
-                                                <li class="text-left">Kentang</li>
-                                            </ul>
-                                            <a class="btn btn-success text-white">Selesai</a> </button>
-                                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                                            <button type="button" class="list-group-item">Morbi leo risus</button>
-                                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4 col-sm-4 p-20">
-                                    <h4 class="card-title">Button items  <a class="btn btn-sm btn-success text-white">a</a>  </h4>
-                                        <div class="list-group">
-                                            <button type="button" class="list-group-item">Cras justo odio 
-                                            <ul>
-                                                <li class="text-left">Kopi</li>
-                                                <li class="text-left">Kentang</li>
-                                            </ul>
-                                            <a class="btn btn-success text-white">Selesai</a> </button>
-                                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                                            <button type="button" class="list-group-item">Morbi leo risus</button>
-                                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                                            <button type="button" class="list-group-item">Vestibulum at eros</button>
-                                        </div>
-                                    </div>
-                            </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                <!-- <h5>No Order</h5> -->
+                                <?php endif; ?>
+                                    
+                            
                     </div>
                         <!-- End Produk Content -->
 
                     </div>
                 </div>
             </div>
-            
-
         </div>
 
         <!-- ============================================================== -->

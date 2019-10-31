@@ -90,13 +90,16 @@ class Order extends CI_Controller
             redirect('forbidden');
         }
 
-        $order = $this->order_model->getOrder();
+        $order = $this->order_model->getOrderAntrian();
             $message = array();
             if ($order) {
+
+                $detil = $this->order_model->orderDetail();
                 $message = array(
                     'success'=>1,
                     'msg'=>' Order',
-                    'data'=>$order
+                    'data'=>$order,
+                    'detail'=>$detil
                 );
             } else {
                 $message = array(
@@ -109,6 +112,75 @@ class Order extends CI_Controller
 
     }
 
+    public function OrderSelesai()
+    {
+        if (!$this->input->is_ajax_request()) {
+            redirect('forbidden');
+        }
+        $id = $this->input->post('idorder');
+        $Finish = $this->order_model->OrderFinish($id);
+            $message = array();
+            if ($Finish) {
+                $message = array(
+                    'success'=>1,
+                    'msg'=>'Finish Order',
+                );
+            } else {
+                $message = array(
+                    'success'=>0,
+                    'msg'=>'Fail Update',
+                );
+            }
+            echo json_encode($message);
+    }
+
+    public function OrderDiambil()
+    {
+        if (!$this->input->is_ajax_request()) {
+            redirect('forbidden');
+        }
+        $id = $this->input->post('idorder');
+        $Finish = $this->order_model->OrderFinish($id,3);
+            $message = array();
+            if ($Finish) {
+                $message = array(
+                    'success'=>1,
+                    'msg'=>'Order Diambil',
+                );
+            } else {
+                $message = array(
+                    'success'=>0,
+                    'msg'=>'Fail Update',
+                );
+            }
+            echo json_encode($message);
+    }
+
+
+
+    public function DashOrderSelesai()
+    {
+        if (!$this->input->is_ajax_request()) {
+            redirect('forbidden');
+        }
+        $Finish = $this->order_model->getOrderAntrian(NULL,2);
+            $message = array();
+            if ($Finish) {
+                $message = array(
+                    'success'=>1,
+                    'data'=>$Finish,
+                    'msg'=>'Finish Order',
+                );
+            } else {
+                $message = array(
+                    'success'=>0,
+                    'msg'=>'Fail Update',
+                );
+            }
+            echo json_encode($message);
+    }
+
+    
 
 
 }
