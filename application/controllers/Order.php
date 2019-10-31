@@ -125,11 +125,6 @@ class Order extends CI_Controller
                     'success'=>1,
                     'msg'=>'Finish Order',
                 );
-            } else {
-                $message = array(
-                    'success'=>0,
-                    'msg'=>'Fail Update',
-                );
             }
             echo json_encode($message);
     }
@@ -147,10 +142,23 @@ class Order extends CI_Controller
                     'success'=>1,
                     'msg'=>'Order Diambil',
                 );
-            } else {
+            }
+            echo json_encode($message);
+    }
+
+    public function OrderDiambil2()
+    {
+        if (!$this->input->is_ajax_request()) {
+            redirect('forbidden');
+        }
+        $id = $this->input->post('idorder');
+        $Finish = $this->order_model->getOrderAntrian(NULL,3);
+            $message = array();
+            if ($Finish) {
                 $message = array(
-                    'success'=>0,
-                    'msg'=>'Fail Update',
+                    'success'=>1,
+                    'data'=>$Finish,
+                    'msg'=>'Order Diambil',
                 );
             }
             echo json_encode($message);
@@ -170,11 +178,6 @@ class Order extends CI_Controller
                     'success'=>1,
                     'data'=>$Finish,
                     'msg'=>'Finish Order',
-                );
-            } else {
-                $message = array(
-                    'success'=>0,
-                    'msg'=>'Fail Update',
                 );
             }
             echo json_encode($message);

@@ -63,7 +63,7 @@ $route['getorderajax'] = 'order/getOrderAjax';
 $route['orderselesai'] = 'order/OrderSelesai';
 $route['dashorderselesai'] = 'order/DashOrderSelesai';
 $route['orderdiambil'] = 'order/OrderDiambil';
-
+$route['orderdiambil2'] = 'order/OrderDiambil2';
 
 
 

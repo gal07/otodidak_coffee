@@ -32,16 +32,17 @@ $(document).ready(function () {
                    
                
                 } else {
+                    $(".menus").remove();
                     console.log('Failed')
                 }
             }
         });   
   
 
-        setTimeout(startClock, 3000);
-      }
+        setTimeout(startClock, 1000);
+    }
       
-      function startClock2() {
+    function startClock2() {
         /* Url */
         var url = $("#url").val();
         $.ajax({
@@ -63,17 +64,50 @@ $(document).ready(function () {
                  
              
               } else {
+                $(".menus2").remove();
                   console.log('Failed')
               }
           }
       });   
 
 
-      setTimeout(startClock2, 3000);
+      setTimeout(startClock2, 1000);
+    }
+
+    function startClock3() {
+        /* Url */
+        var url = $("#url").val();
+        $.ajax({
+          type: "post",
+          url: url+'orderdiambil2',
+          dataType: "json",
+          success: function (response) {
+              console.log(response);
+              // return false;
+              /* If success */
+              if (response.success == 1) {
+                $(".menus3").remove();
+                  response.data.forEach(element => {
+                      $(".selesai_ord2").append(
+                          '<div class="col-md-4 col-sm-4 p-20 menus3" id="selesai_'+element.id_order+'">'+
+                              '<h4 class="card-title">#'+element.id_order+' <a id="'+element.id_order+'" class="btn btn-success text-white takeorder"><i class="fa fa-check-circle-o"></i></a></h4></div>'
+                      );
+                  });
+                 
+             
+              } else {
+                  console.log('Failed')
+              }
+          }
+      });   
+
+
+      setTimeout(startClock3, 1000);
     }
 
     startClock();
     startClock2();
+    startClock3();
 
       $('.el-element-overlay').on('click','.finishing',function () { 
 

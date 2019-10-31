@@ -1,4 +1,6 @@
 <div class="page-wrapper">
+<input type="hidden" name="url" id="url" value="<?= base_url() ?>">
+
     <!-- ============================================================== -->
     <!-- Container fluid  -->
     <!-- ============================================================== -->
@@ -21,112 +23,72 @@
                     </div>
                 </div>
             </div>
-
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                     <!-- Produk Content -->
-                    <div class="row el-element-overlay">
+                    <div class="row el-element-overlay ord_belum_selesai">
                             <div class="col-md-12">
                                 <h4 class="card-title text-center">Proses</h4>
                                 <br>
                             </div>
-
-                            <?php foreach($produk as $value):?>
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card">
-                                    <div class="el-card-item">
-                                        <div class="el-card-avatar el-overlay-1"> <img src="<?= base_url('assets/produk/').$value['foto'] ?>" alt="user" />
-                                            <div class="el-overlay">
-                                                <ul class="el-info">
-                                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="../plugins/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
-                                                    <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="el-card-content">
-                                            <h5 class="box-title"><?= $value['produk'] ?></h5> 
-                                            <small> <?= 'Rp. '.$value['harga'] ?> </small>
-                                            <br>
-                                            <small> <?= $value['kategori'] ?> </small>
-                                            <br>
-                                            <button class="btn btn-sm btn-info"> Order </button>
-                                            <br/> 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <?php endforeach;?>
-                            <div class="row">
-                                    <div class="col-md-12 col-sm-4 p-20">
-                                        <h4 class="card-title">Button items</h4>
+                                <?php
+                                $order = $this->order_model->getOrderAntrian();
+                                if($order != NULL): ?>
+                                <?php
+                                    foreach( $order as $vals ): ?>
+                                    <div class="col-md-4 col-sm-4 p-20 menus" id="m_ord_<?= $vals->id_order ?>">
+                                        <h4 class="card-title">#<?=$vals->id_order?> <a id="<?= $vals->id_order ?>" class="btn btn-danger text-white finishing"><i class="fa fa-clock-o"></i></a></h4>
                                         <div class="list-group">
-                                            <button type="button" class="list-group-item">Cras justo odio 
-                                            <ul>
-                                                <li class="text-left">Kopi</li>
-                                                <li class="text-left">Kentang</li>
-                                            </ul>
-                                            <a class="btn btn-success text-white">Selesai</a> </button>
-                                            <button type="button" class="list-group-item">Dapibus ac facilisis in</button>
-                                            <button type="button" class="list-group-item">Morbi leo risus</button>
-                                            <button type="button" class="list-group-item">Porta ac consectetur ac</button>
-                                            <button type="button" class="list-group-item">Vestibulum at eros</button>
+                                            <?php
+                                            $antrian = $this->order_model->getAntrianDetail($vals->id_order);
+                                            foreach( $antrian as $vall ): ?>
+                                            <button type="button" class="list-group-item"><?= $vall->produk ?> <span class="badge badge-danger ml-auto"><?= $vall->qty ?></span></button>
+                                            <?php endforeach; ?>
                                         </div>
                                     </div>
-                                </div>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                <!-- <h5>No Order</h5> -->
+                                <?php endif; ?>
+                                    
+                            
                     </div>
                         <!-- End Produk Content -->
 
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
                     <!-- Produk Content -->
-                    <div class="row el-element-overlay">
+                    <div class="row el-element-overlay selesai_ord">
                             <div class="col-md-12">
-                                <h4 class="card-title text-center">Pesanan Siap</h4>
+                                <h4 class="card-title text-center">Finish</h4>
                                 <br>
                             </div>
-
-                            <?php foreach($produk as $value):?>
-
-                            <div class="col-lg-3 col-md-6">
-                                <div class="card">
-                                    <div class="el-card-item">
-                                        <div class="el-card-avatar el-overlay-1"> <img src="<?= base_url('assets/produk/').$value['foto'] ?>" alt="user" />
-                                            <div class="el-overlay">
-                                                <ul class="el-info">
-                                                    <li><a class="btn default btn-outline image-popup-vertical-fit" href="../plugins/images/users/1.jpg"><i class="icon-magnifier"></i></a></li>
-                                                    <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="el-card-content">
-                                            <h5 class="box-title"><?= $value['produk'] ?></h5> 
-                                            <small> <?= 'Rp. '.$value['harga'] ?> </small>
-                                            <br>
-                                            <small> <?= $value['kategori'] ?> </small>
-                                            <br>
-                                            <button class="btn btn-sm btn-info"> Order </button>
-                                            <br/> 
-                                        </div>
+                                <?php
+                                $orderfinish = $this->order_model->getOrderAntrian(NULL,2);
+                                if($orderfinish != NULL): ?>
+                                <?php
+                                    foreach( $orderfinish as $valss ): ?>
+                                    <div class="col-md-4 col-sm-4 p-20 menus2" id="selesai_<?= $valss->id_order ?>">
+                                        <h4 class="card-title">#<?=$valss->id_order?> <a id="<?= $valss->id_order ?>" class="btn btn-info text-white takeorder"><i class="fa fa-cutlery"></i></a></h4>
                                     </div>
-                                </div>
-                            </div>
-
-                            <?php endforeach;?>
+                                    <?php endforeach; ?>
+                                <?php else: ?>
+                                <!-- <h5>No Order</h5> -->
+                                <?php endif; ?>
+                                    
+                            
                     </div>
                         <!-- End Produk Content -->
 
                     </div>
                 </div>
             </div>
-            
-
         </div>
 
         <!-- ============================================================== -->

@@ -13,6 +13,12 @@
      <!-- All Jquery -->
      <!-- ============================================================== -->
      <script src="<?= base_url() ?>assets/backend/plugins/jquery/jquery.min.js"></script>
+     <script src="<?= base_url() ?>assets/js/antrian.js"></script>
+     <script>
+     $('.el-element-overlay').off('click','.finishing',function ());
+     $('.el-element-overlay').off('click','.takeorder',function ());
+     </script>
+
      <!-- Bootstrap tether Core JavaScript -->
      <script src="<?= base_url() ?>assets/backend/plugins/bootstrap/js/popper.min.js"></script>
      <script src="<?= base_url() ?>assets/backend/plugins/bootstrap/js/bootstrap.min.js"></script>
