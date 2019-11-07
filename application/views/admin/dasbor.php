@@ -17,22 +17,68 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Kategori & Produk</h4>
+                        <h4 class="card-title">Dasbor</h4>
                         <!-- Nav tabs -->
-                        <div class="vtabs">
-                            <ul class="nav nav-tabs tabs-vertical" role="tablist">
-                                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#kategori" role="tab"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Kategori</span> </a> </li>
-                                <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#produk" role="tab"><span class="hidden-sm-up"><i class="fa fa-shopping-bag"></i></span> <span class="hidden-xs-down">Produk</span></a> </li>
-                            </ul>
-                            <!-- Tab panes -->
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="kategori" role="tabpanel">
-                                    1
-                                </div>
-                                <div class="tab-pane" id="produk" role="tabpanel">
-                                    2
-                                </div>
+                        <div class="row">
+                            <!-- Column -->
+
+
+                            <div class="col-lg-4 col-md-4">
+                                <a href="<?= base_url('admin/kategori') ?>">
+                                    <div class="card card-inverse card-primary">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div class="m-r-20 align-self-center">
+                                                    <h1 class="text-white"><i class="mdi mdi-file-tree"></i></h1>
+                                                </div>
+                                                <div>
+                                                    <h3 class="card-title">Menu Kategori</h3>
+                                                    <h6 class="card-subtitle">Kelola Kategori</h6>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
+                            <div class="col-lg-4 col-md-4">
+                                <a href="<?= base_url('admin/produk') ?>">
+                                    <div class="card card-inverse card-success">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div class="m-r-20 align-self-center">
+                                                    <h1 class="text-white"><i class="mdi mdi-cart"></i></h1>
+                                                </div>
+                                                <div>
+                                                    <h3 class="card-title">Menu Produk</h3>
+                                                    <h6 class="card-subtitle">Kelola Produk</h6>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-lg-4 col-md-4">
+                                <a href="<?= base_url('order/index') ?>">
+                                    <div class="card card-inverse card-info">
+                                        <div class="card-body">
+                                            <div class="d-flex">
+                                                <div class="m-r-20 align-self-center">
+                                                    <h1 class="text-white"><i class="fa fa-clock-o"></i></h1>
+                                                </div>
+                                                <div>
+                                                    <h3 class="card-title">Menu Order</h3>
+                                                    <h6 class="card-subtitle">Kelola Order</h6>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <!-- Column -->
                         </div>
                     </div>
                 </div>

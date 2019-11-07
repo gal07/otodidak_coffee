@@ -177,6 +177,93 @@ class Admin extends CI_Controller
         }
     }
 
+    public function edit_produk($admin = 'edit_produk')
+    {
+
+        if (!file_exists(APPPATH . 'views/admin/' . $admin . '.php')) {
+            show_404();
+        } else {
+            $data['user'] = $this->db->get_where('user', ['username' => $this->session->userdata('username')])->row_array();
+
+            $data['data'] = $this->produk_model->get_spesific($this->input->get('id'));
+
+            $this->form_validation->set_rules('produk', 'Produk', 'required');
+            $this->form_validation->set_rules('harga', 'Harga', 'required');
+
+
+            if ($this->form_validation->run() == false) {
+                $data['title'] = 'Edit Produk';
+                $this->load->view('admin/templates/header', $data);
+                $this->load->view('admin/' . $admin);
+                $this->load->view('admin/templates/footer');
+            } else {
+
+                /** If You Changes Photos */
+                $name_files = date('Ymdhis') . '.jpg';
+
+                if ($_FILES['foto']['size'] != 0) {
+
+                    //upload image
+                    $config['upload_path'] = './assets/produk';
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|JPEG';
+                    $config['max_size'] = '1024';
+                    date_default_timezone_set('Asia/Jakarta');
+                    $config['file_name']  = $name_files;
+                    $config['detect_mime'] = TRUE;
+                    $this->load->library('upload', $config);
+                    if (!$this->upload->do_upload("foto")) {
+
+                        /* If upload photo succcess */ } else {
+                        /* If upload photo failed */ }
+                } else {
+                    /* if no changes photos */ }
+
+
+                $data = [];
+
+
+                if ($_FILES['foto']['size'] != 0) {
+
+                    /** With Photos */
+                    $data = array(
+                        'produk' => $this->input->post('produk'),
+                        'harga' => $this->input->post('harga'),
+                        'foto' => $name_files,
+                        // 'updated_date' => time()
+                    );
+                    $MyPaths = './assets/produk/' . $this->input->post('old_foto');
+                    unlink($MyPaths);
+                } else {
+                    /** Without Photos */
+                    $data = array(
+                        'produk' => $this->input->post('produk'),
+                        'harga' => $this->input->post('harga'),
+                    );
+                }
+
+                $id = $this->input->post('id_produk');
+                $update = $this->produk_model->update($data, $id);
+
+                $this->session->set_flashdata('message', '<div class="alert alert-success alert-rounded"> <i class="mdi mdi-cart"></i> Anda berhasil merubah data Produk.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                </div>');
+                redirect('admin/produk');
+            }
+        }
+    }
+
+    public function hp()
+    {
+        $id = $this->input->get('id');
+        $delete = $this->produk_model->delete($id);
+        $MyPaths = './assets/produk/' . $this->input->get('pict');
+        unlink($MyPaths);
+        $this->session->set_flashdata('message', '  <div class="alert alert-success alert-rounded"> <i class="mdi mdi-cart"></i> Anda berhasil menghapus Produk
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>');
+        redirect(base_url('admin/produk'));
+    }
+
     public function order($admin = 'order')
     {
         if (!file_exists(APPPATH . 'views/admin/' . $admin . '.php')) {
@@ -244,33 +331,55 @@ class Admin extends CI_Controller
             }
         }
     }
-    public function hp()
+
+    public function tap()
     {
-        $id = $this->input->get('id');
-        $delete = $this->produk_model->delete($id);
-        $MyPaths = './assets/produk/' . $this->input->get('pict');
-        unlink($MyPaths);
-        $this->session->set_flashdata('message', '  <div class="alert alert-success alert-rounded"> <i class="mdi mdi-cart"></i> Anda berhasil menghapus Produk
+        $data = array(
+
+            'status' => $this->input->post('status')
+        );
+        $id = $this->input->post('id_produk');
+        $update = $this->produk_model->update($data, $id);
+
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-rounded"> <i class="mdi mdi-cart"></i> Anda berhasil merubah Status Produk menjadi Tidak Aktif.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
     </div>');
-        redirect(base_url('admin/produk'));
+        redirect('admin/produk');
     }
+
+    public function ap()
+    {
+        $data = array(
+
+            'status' => $this->input->post('status')
+        );
+        $id = $this->input->post('id_produk');
+        $update = $this->produk_model->update($data, $id);
+
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success alert-rounded"> <i class="mdi mdi-cart"></i> Anda berhasil merubah Status Produk menjadi Aktif.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+    </div>');
+        redirect('admin/produk');
+    }
+
     public function ho()
     {
         $id = $this->input->post('idorder');
         $delete = $this->order_model->Hapus($id);
         $message = array();
-            if ($delete) {
-                $message = array(
-                    'success'=>1,
-                    'msg'=>'Hapus Order',
-                );
-            } else {
-                $message = array(
-                    'success'=>0,
-                    'msg'=>'Fail Hapus Order',
-                );
-            }
-            echo json_encode($message);
+        if ($delete) {
+            $message = array(
+                'success' => 1,
+                'msg' => 'Hapus Order',
+            );
+        } else {
+            $message = array(
+                'success' => 0,
+                'msg' => 'Fail Hapus Order',
+            );
+        }
+        echo json_encode($message);
     }
 }

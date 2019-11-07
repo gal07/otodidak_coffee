@@ -19,6 +19,9 @@
                     <div class="card-body">
                         <h4 class="card-title">Produk</h4>
                         <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button>
+                        <a href="<?= base_url('admin') ?>" class="btn btn-dark mb-3"><i class="mdi mdi-gauge"></i> Dasbor</a>
+                        <a href="<?= base_url('admin/kategori') ?>" class="btn btn-dark mb-3"><i class="mdi mdi-file-tree"></i> Kategori</a>
+                        <a href="<?= base_url('order/index') ?>" class="btn btn-dark mb-3"><i class="fa fa-clock-o"></i> Order</a>
                         <?php if (validation_errors()) : ?>
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -51,20 +54,20 @@
                                                 <td><?= $i; ?>. </td>
                                                 <td><?= $value['kategori']; ?></td>
                                                 <td>
-                                                    <img src="<?php echo base_url('assets/produk/') . $value['foto']; ?>"  height="50px">
+                                                    <img src="<?php echo base_url('assets/produk/') . $value['foto']; ?>" height="50px">
                                                 </td>
                                                 <td><?= $value['produk']; ?></td>
                                                 <td>IDR. <?= number_format($value['harga']); ?></td>
                                                 <td>
                                                     <?php if ($value['status'] == 1) : ?>
-                                                        <form action="<?= base_url('admin/tak'); ?>" method="post">
+                                                        <form action="<?= base_url('admin/tap'); ?>" method="post">
                                                             <input type="hidden" name="id_produk" value="<?= $value['id_produk']; ?>">
                                                             <input type="hidden" name="status" value="0">
                                                             <button type="submit" class="btn btn-success btn-xs">Aktif</button>
                                                         </form>
 
                                                     <?php elseif ($value['status'] == 0) : ?>
-                                                        <form action="<?= base_url('admin/ak'); ?>" method="post">
+                                                        <form action="<?= base_url('admin/ap'); ?>" method="post">
                                                             <input type="hidden" name="id_produk" value="<?= $value['id_produk']; ?>">
                                                             <input type="hidden" name="status" value="1">
                                                             <button type="submit" class="btn btn-danger btn-xs">Tidak Aktif</button>

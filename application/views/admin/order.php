@@ -19,6 +19,9 @@
                     <div class="card-body">
                         <h4 class="card-title">Order</h4>
                         <input type="hidden" name="url" id="url" value="<?= base_url() ?>">
+                        <a href="<?= base_url('admin') ?>" class="btn btn-dark mb-3"><i class="mdi mdi-gauge"></i> Dasbor</a>
+                        <a href="<?= base_url('admin/kategori') ?>" class="btn btn-dark mb-3"><i class="mdi mdi-file-tree"></i> Kategori</a>
+                        <a href="<?= base_url('admin/produk') ?>" class="btn btn-dark mb-3"><i class="mdi mdi-cart"></i> Produk</a>
                         <!-- <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button> -->
                         <?php if (validation_errors()) : ?>
                             <div class="alert alert-danger alert-dismissible">
@@ -53,9 +56,9 @@
                                                 <td><?= $i; ?>. </td>
                                                 <td><?= $value->id_order ?></td>
                                                 <td><?= $value->tanggal ?></td>
-                                                <td><?= 'Rp. '.number_format($value->bayar,0,',','.') ?></td>
-                                                <td><?= 'Rp. '.number_format($value->total_harga,0,',','.') ?></td>
-                                                <td><?= 'Rp. '.number_format($value->kembalian,0,',','.') ?></td>
+                                                <td><?= 'Rp. ' . number_format($value->bayar, 0, ',', '.') ?></td>
+                                                <td><?= 'Rp. ' . number_format($value->total_harga, 0, ',', '.') ?></td>
+                                                <td><?= 'Rp. ' . number_format($value->kembalian, 0, ',', '.') ?></td>
                                                 <td>
                                                     <?php if ($value->status == 3) : ?>
                                                         <form action="<?= base_url('admin/tak'); ?>" method="post">
@@ -73,7 +76,7 @@
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="<?= base_url('order/detail?id='.$value->id_order) ?>"  data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
+                                                    <a href="<?= base_url('order/detail?id=' . $value->id_order) ?>" data-toggle="tooltip" data-original-title="Detail"> <i class="fa fa-eye text-inverse m-r-10"></i> </a>
                                                     <a href="#" class="deletes" idord="<?= $value->id_order ?>" data-toggle="tooltip" data-original-title="Hapus"> <i class="fa fa-close text-danger"></i> </a>
                                                 </td>
                                             </tr>

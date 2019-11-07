@@ -19,7 +19,10 @@
 
                     <div class="card-body">
                         <h4 class="card-title">Kategori</h4>
-                        <button type="button" class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button>
+                        <button class="btn btn-info mb-3" data-toggle="modal" data-target="#tambah-modal"><i class="fa fa-plus"></i> Tambah</button>
+                        <a href="<?= base_url('admin') ?>" class="btn btn-dark mb-3"><i class="mdi mdi-gauge"></i> Dasbor</a>
+                        <a href="<?= base_url('admin/produk') ?>" class="btn btn-dark mb-3"><i class="mdi mdi-cart"></i> Produk</a>
+                        <a href="<?= base_url('order/index') ?>" class="btn btn-dark mb-3"><i class="fa fa-clock-o"></i> Order</a>
                         <?php if (validation_errors()) : ?>
                             <div class="alert alert-danger alert-dismissible">
                                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
