@@ -67,7 +67,11 @@
                 <!-- End Logo -->
                 <!-- ============================================================== -->
                 <div class="navbar-collapse">
+                  <ul class="navbar-nav mr-auto mt-md-0">
+                                          <!-- This is  -->
+                    <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
 
+                  </ul>
                 </div>
             </nav>
         </header>
