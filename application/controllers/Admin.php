@@ -130,7 +130,7 @@ class Admin extends CI_Controller
                 $this->load->view('admin/templates/footer');
             } else {
                 //upload image
-                $config['upload_path'] = './assets/produk';
+                $config['upload_path'] = './assets/produk/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|JPEG';
                 $config['max_size'] = '1024';
                 date_default_timezone_set('Asia/Jakarta');
