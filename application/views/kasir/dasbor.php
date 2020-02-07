@@ -61,12 +61,12 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8 col-sm-6">
+                <div class="col-md-8 col-sm-8">
                         <div class="card">
                             <div class="card-body">
                                 <!-- Produk Content -->
                                 <div class="row el-element-overlay">
-                                    <div class="col-lg-12 col-md-12 col-sm-8 col-xs-9">
+                                    <div class="col-lg-12">
                                         <h4 class="card-title">Produk Otodidak Coffee</h4>
                                         <input type="hidden" name="url" id="url" value="<?= base_url() ?>">
                                         <br>
@@ -76,7 +76,7 @@
 
                                     <?php foreach ($produk as $value) : ?>
 
-                                        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-3">
+                                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                                             <div class="card">
                                                 <div class="el-card-item">
                                                     <div class="el-card-avatar el-overlay-1"> <img src="<?= base_url('assets/produk/') . $value['foto'] ?>" alt="user" />
@@ -102,13 +102,13 @@
                             </div>
                         </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="text-center"> Cart </h5>
                             <div class="row">
                                 <!-- Cart Content -->
-                                <div class="col-lg-12 col-md-12 col-sm-4 col-xs-3">
+                                <div class="col-lg-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <h4 class="card-title">Order : <?= date('d - m - Y') ?></h4>
