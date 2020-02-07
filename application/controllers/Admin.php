@@ -132,7 +132,7 @@ class Admin extends CI_Controller
                 //upload image
                 $config['upload_path'] = './assets/produk/';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|JPEG';
-                $config['max_size'] = '1024';
+                $config['max_size'] = '5024';
                 date_default_timezone_set('Asia/Jakarta');
                 $config['file_name']  = date('Ymdhis') . '.jpg';
                 $config['detect_mime'] = TRUE;
@@ -206,7 +206,7 @@ class Admin extends CI_Controller
                     //upload image
                     $config['upload_path'] = './assets/produk';
                     $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|JPEG';
-                    $config['max_size'] = '1024';
+                    $config['max_size'] = '5024';
                     date_default_timezone_set('Asia/Jakarta');
                     $config['file_name']  = $name_files;
                     $config['detect_mime'] = TRUE;
@@ -287,7 +287,7 @@ class Admin extends CI_Controller
                 //upload image
                 $config['upload_path'] = './assets/produk';
                 $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG|JPEG';
-                $config['max_size'] = '1024';
+                $config['max_size'] = '5024';
                 date_default_timezone_set('Asia/Jakarta');
                 $config['file_name']  = date('Ymdhis') . '.jpg';
                 $config['detect_mime'] = TRUE;
